@@ -5,7 +5,7 @@ let
     modules = testModules ++ [ module ];
     class = "nixosTest";
   };
-  runTest = module: (evalTest ({ config, ... }: { imports = [ module ]; result = config.test; })).config.result;
+  runPolyTest = module: (evalTest ({ config, ... }: { imports = [ module ]; result = config.test; })).config.result;
 
   testModules = [
     ./call-test.nix
@@ -23,5 +23,5 @@ let
 
 in
 {
-  inherit evalTest runTest testModules;
+  inherit evalTest runPolyTest testModules;
 }
