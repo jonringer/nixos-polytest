@@ -12,9 +12,12 @@ let
   };
 
 
-  vlans = map (m: (
-    m.virtualisation.vlans ++
-    (lib.mapAttrsToList (_: v: v.vlan) m.virtualisation.interfaces))) (lib.attrValues config.nodes);
+  vlans = map
+    (m: (
+      m.virtualisation.vlans ++
+      (lib.mapAttrsToList (_: v: v.vlan) m.virtualisation.interfaces)
+    ))
+    (lib.attrValues config.nodes);
   vms = map (m: m.system.build.vm) (lib.attrValues config.nodes);
 
   nodeHostNames =
@@ -28,8 +31,8 @@ let
       head = lib.substring 0 1 name;
       tail = lib.substring 1 (-1) name;
     in
-      (if builtins.match "[A-z_]" head == null then "_" else head) +
-      lib.stringAsChars (c: if builtins.match "[A-z0-9_]" c == null then "_" else c) tail;
+    (if builtins.match "[A-z_]" head == null then "_" else head) +
+    lib.stringAsChars (c: if builtins.match "[A-z0-9_]" c == null then "_" else c) tail;
 
   uniqueVlans = lib.unique (builtins.concatLists vlans);
   vlanNames = map (i: "vlan${toString i}: VLan;") uniqueVlans;
@@ -165,7 +168,7 @@ in
         They become part of [{option}`driver`](#test-opt-driver) via `wrapProgram`.
       '';
       type = types.listOf types.str;
-      default = [];
+      default = [ ];
     };
 
     skipLint = mkOption {

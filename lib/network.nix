@@ -32,8 +32,10 @@ let
       # Automatically assign IP addresses to requested interfaces.
       assignIPs = lib.filter (i: i.assignIP) interfaces;
       ipInterfaces = forEach assignIPs (i:
-        nameValuePair i.name { ipv4.addresses =
-          [ { address = "192.168.${toString i.vlan}.${toString config.virtualisation.test.nodeNumber}";
+        nameValuePair i.name {
+          ipv4.addresses =
+            [{
+              address = "192.168.${toString i.vlan}.${toString config.virtualisation.test.nodeNumber}";
               prefixLength = 24;
             }];
         });

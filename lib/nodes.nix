@@ -32,9 +32,11 @@ let
       in
         hostToGuest.${hostPlatform.system} or (throw message);
 
-  mkNode = { nixpkgsPath, modules, specialArgs, ... }: let
+  mkNode = { nixpkgsPath, modules, specialArgs, ... }:
+    let
       modulesPath = "${nixpkgsPath}/nixos/modules";
-    in import "${nixpkgsPath}/nixos/lib/eval-config.nix" {
+    in
+    import "${nixpkgsPath}/nixos/lib/eval-config.nix" {
       lib = import "${nixpkgsPath}/lib";
       system = null; # use modularly defined system
       inherit modules specialArgs;
@@ -62,7 +64,8 @@ let
         ];
     };
 
-in {
+in
+{
   options = {
     nodes = mkOption {
       apply = builtins.mapAttrs (n: v: mkNode v);
