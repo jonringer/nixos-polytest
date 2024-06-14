@@ -28,5 +28,5 @@ let
 
 in
 {
-  inherit evalTest runPolyTest testModules;
+  inherit evalTest mkRunPolyTest testModules;
 }
