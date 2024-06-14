@@ -86,7 +86,7 @@ in
           description = "Attrset of values passed to evalModules' specialArgs paramter";
         };
 
-        options.modules = mkOptions {
+        options.modules = mkOption {
           type = types.listOf types.deferredModules;
           default = [ ];
           description = "Additional modules to be passed to node evaluation";
