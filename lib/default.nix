@@ -1,13 +1,13 @@
 { lib }:
 let
 
-  evalTest = module: lib.evalModules {
+  evalTest = pkgs: module: lib.evalModules {
+    specialArgs = { hostPkgs = pkgs; };
     modules = testModules ++ [ module ];
     class = "nixosTest";
   };
 
-  mkRunPolyTest = pkgs: module: (evalTest ({ config, ... }: {
-    specialArgs = { hostPkgs = pkgs; };
+  mkRunPolyTest = pkgs: module: (evalTest pkgs ({ config, ... }: {
     imports = [ module ];
     result = config.test;
   })).config.result;
