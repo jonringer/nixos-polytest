@@ -5,7 +5,12 @@ let
     modules = testModules ++ [ module ];
     class = "nixosTest";
   };
-  runPolyTest = module: (evalTest ({ config, ... }: { imports = [ module ]; result = config.test; })).config.result;
+
+  mkRunPolyTest = pkgs: module: (evalTest ({ config, ... }: {
+    specialArgs = { hostPkgs = pkgs; };
+    imports = [ module ];
+    result = config.test;
+  })).config.result;
 
   testModules = [
     ./call-test.nix
