@@ -1,0 +1,79 @@
+{
+  "nodes": {
+    "nixpkgs-2311": {
+      "locked": {
+        "lastModified": 1718060059,
+        "narHash": "sha256-9XKFni8VMXo81RTq9XygCyaO3I/7UKpwIlM/yn0MdcM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "a3c8d64ba846725f040582b2d3b875466d2115bd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-23.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-2405": {
+      "locked": {
+        "lastModified": 1718208800,
+        "narHash": "sha256-US1tAChvPxT52RV8GksWZS415tTS7PV42KTc2PNDBmc=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "cc54fb41d13736e92229c21627ea4f22199fee6b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-lib": {
+      "locked": {
+        "lastModified": 1717894324,
+        "narHash": "sha256-4q6ZO3BqHgdd3Aacb/xiQXB4g9TQKpQg/praTpD9vbI=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "13eac98dc5233fe7e52f0cd0e2cba7dcd77feca5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
+    "poly-test": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib"
+      },
+      "locked": {
+        "lastModified": 1718305262,
+        "narHash": "sha256-Gx31htxCablRDedkZQB6NyGrb8+zG2Ww62KtGq/NqE0=",
+        "owner": "jonringer",
+        "repo": "nixos-polytest",
+        "rev": "86a03a758017244012a8ef0c0003d1b4ecd9baa5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jonringer",
+        "ref": "master",
+        "repo": "nixos-polytest",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs-2311": "nixpkgs-2311",
+        "nixpkgs-2405": "nixpkgs-2405",
+        "poly-test": "poly-test"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
