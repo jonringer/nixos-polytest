@@ -39,7 +39,7 @@ let
     import "${nixpkgsPath}/nixos/lib/eval-config.nix" {
       lib = import "${nixpkgsPath}/lib";
       system = null; # use modularly defined system
-      inherit modules specialArgs;
+      inherit modules;
       # Re-create nixos-lib/eval-config.nix logic
       specialArgs = {
         inherit modulesPath;
