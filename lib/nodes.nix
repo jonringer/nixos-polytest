@@ -67,6 +67,23 @@ let
 in
 {
   options = {
+    defaults = mkOption {
+      description = ''
+        NixOS configuration that is applied to all [{option}`nodes`](#test-opt-nodes).
+      '';
+      type = types.deferredModule;
+      default = { };
+    };
+
+    extraBaseModules = mkOption {
+      description = ''
+        NixOS configuration that, like [{option}`defaults`](#test-opt-defaults), is applied to all [{option}`nodes`](#test-opt-nodes) and can not be undone with [`specialisation.<name>.inheritParentConfig`](https://search.nixos.org/options?show=specialisation.%3Cname%3E.inheritParentConfig&from=0&size=50&sort=relevance&type=packages&query=specialisation).
+      '';
+      type = types.deferredModule;
+      default = { };
+    };
+
+
     nodes = mkOption {
       apply = builtins.mapAttrs (n: v: mkNode v);
       type = types.attrsOf (types.submodule ({ name, config, ... }: {
