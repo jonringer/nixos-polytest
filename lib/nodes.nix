@@ -71,7 +71,7 @@ in
       apply = builtins.mapAttrs (n: v: mkNode v);
       type = types.attrsOf (types.submodule ({ name, config, ... }: {
         option.nixpkgsPath = mkOption {
-          type = path;
+          type = types.path;
           default = hostPkgs.path;
           description = "Path to the toplevel of nixpkgs required to eval";
           longDescription = ''
