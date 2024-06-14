@@ -8,8 +8,5 @@
         "Do not use the `pkgs` module argument in tests you want to run on darwin. It is ambiguous, and many tests are broken because of it. If you need to use a package on the VM host, use `hostPkgs`. Otherwise, use `config.node.pkgs`, or `config.nodes.<name>.nixpkgs.pkgs`."
         hostPkgs;
 
-    defaults = {
-      # TODO: a module to set a shared pkgs, if options.nixpkgs.* is untouched by user (highestPrio) */
-    };
   };
 }

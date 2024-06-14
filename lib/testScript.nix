@@ -57,28 +57,28 @@ in
           }
       else config.testScript;
 
-    defaults = { config, name, ... }: {
-      # Make sure all derivations referenced by the test
-      # script are available on the nodes. When the store is
-      # accessed through 9p, this isn't important, since
-      # everything in the store is available to the guest,
-      # but when building a root image it is, as all paths
-      # that should be available to the guest has to be
-      # copied to the image.
-      virtualisation.additionalPaths =
-        lib.optional
-          # A testScript may evaluate nodes, which has caused
-          # infinite recursions. The demand cycle involves:
-          #   testScript -->
-          #   nodes -->
-          #   toplevel -->
-          #   additionalPaths -->
-          #   hasContext testScript' -->
-          #   testScript (ad infinitum)
-          # If we don't need to build an image, we can break this
-          # cycle by short-circuiting when useNixStoreImage is false.
-          (config.virtualisation.useNixStoreImage && builtins.hasContext testModuleArgs.config.testScriptString && testModuleArgs.config.includeTestScriptReferences)
-          (hostPkgs.writeStringReferencesToFile testModuleArgs.config.testScriptString);
-    };
+    #defaults = { config, name, ... }: {
+    #  # Make sure all derivations referenced by the test
+    #  # script are available on the nodes. When the store is
+    #  # accessed through 9p, this isn't important, since
+    #  # everything in the store is available to the guest,
+    #  # but when building a root image it is, as all paths
+    #  # that should be available to the guest has to be
+    #  # copied to the image.
+    #  virtualisation.additionalPaths =
+    #    lib.optional
+    #      # A testScript may evaluate nodes, which has caused
+    #      # infinite recursions. The demand cycle involves:
+    #      #   testScript -->
+    #      #   nodes -->
+    #      #   toplevel -->
+    #      #   additionalPaths -->
+    #      #   hasContext testScript' -->
+    #      #   testScript (ad infinitum)
+    #      # If we don't need to build an image, we can break this
+    #      # cycle by short-circuiting when useNixStoreImage is false.
+    #      (config.virtualisation.useNixStoreImage && builtins.hasContext testModuleArgs.config.testScriptString && testModuleArgs.config.includeTestScriptReferences)
+    #      (hostPkgs.writeStringReferencesToFile testModuleArgs.config.testScriptString);
+    #};
   };
 }
