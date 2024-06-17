@@ -89,11 +89,9 @@ in
         options.nixpkgsPath = mkOption {
           type = types.path;
           default = hostPkgs.path;
+          # This is needed to allow for the import module-list to match the intended
+          # checkout of nixpkgs associated with the modules setting downstream options.
           description = "Path to the toplevel of nixpkgs required to eval";
-          longDescription = ''
-            This is needed to allow for the import module-list to match the intended
-            checkout of nixpkgs associated with the modules setting downstream options.
-          '';
         };
 
         options.specialArgs = mkOption {
