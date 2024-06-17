@@ -85,7 +85,6 @@ in
 
 
     nodes = mkOption {
-      apply = builtins.mapAttrs (n: v: mkNode v);
       type = types.attrsOf (types.submodule ({ name, config, ... }: {
         option.nixpkgsPath = mkOption {
           type = types.path;
@@ -109,6 +108,13 @@ in
           description = "Additional modules to be passed to node evaluation";
         };
 
+        options.machine = mkOption {
+          type = types.raw;
+          default = types.option;
+          internal = true;
+        };
+
+        config.machine = mkNode config;
       }));
     };
   };
