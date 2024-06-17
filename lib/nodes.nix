@@ -86,7 +86,7 @@ in
 
     nodes = mkOption {
       type = types.attrsOf (types.submodule ({ name, config, ... }: {
-        option.nixpkgsPath = mkOption {
+        options.nixpkgsPath = mkOption {
           type = types.path;
           default = hostPkgs.path;
           description = "Path to the toplevel of nixpkgs required to eval";
@@ -96,7 +96,7 @@ in
           '';
         };
 
-        option.specialArgs = mkOption {
+        options.specialArgs = mkOption {
           type = types.attrsOf types.any;
           default = testModuleArgs.specialArgs;
           description = "Attrset of values passed to evalModules' specialArgs paramter";
