@@ -52,18 +52,14 @@
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
-        "lastModified": 1718305262,
-        "narHash": "sha256-Gx31htxCablRDedkZQB6NyGrb8+zG2Ww62KtGq/NqE0=",
-        "owner": "jonringer",
-        "repo": "nixos-polytest",
-        "rev": "86a03a758017244012a8ef0c0003d1b4ecd9baa5",
-        "type": "github"
+        "lastModified": 1718653686,
+        "narHash": "sha256-NPkx6nYiMbLetLfx6gt62me7HhBqRWYCEYbWcWnao8I=",
+        "path": "/home/jringer/projects/poly-runtest",
+        "type": "path"
       },
       "original": {
-        "owner": "jonringer",
-        "ref": "master",
-        "repo": "nixos-polytest",
-        "type": "github"
+        "path": "/home/jringer/projects/poly-runtest",
+        "type": "path"
       }
     },
     "root": {
