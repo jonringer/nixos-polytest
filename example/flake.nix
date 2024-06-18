@@ -18,8 +18,8 @@
         foo.wait_for_unit("multi-user.target")
         bar.wait_for_unit("multi-user.target")
 
-        foo.succeed("cat /etc/os-release")
-        bar.succeed("cat /etc/os-release")
+        foo.succeed("grep 23.11 /etc/os-release")
+        bar.succeed("grep 24.05 /etc/os-release")
       '';
       nodes.a = {
         nixpkgsPath = toString nixpkgs-2311;
