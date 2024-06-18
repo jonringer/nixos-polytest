@@ -1,13 +1,13 @@
-{ lib }:
+pkgs:
 let
 
-  evalTest = pkgs: module: lib.evalModules {
+  evalTest = module: pkgs.lib.evalModules {
     specialArgs = { hostPkgs = pkgs; };
     modules = testModules ++ [ module ];
     class = "nixosTest";
   };
 
-  mkRunPolyTest = pkgs: module: (evalTest pkgs ({ config, ... }: {
+  runPolyTest = module: (evalTest ({ config, ... }: {
     imports = [ module ];
     result = config.test;
   })).config.result;
@@ -27,6 +27,4 @@ let
   ];
 
 in
-{
-  inherit evalTest mkRunPolyTest testModules;
-}
+  runPolyTest
