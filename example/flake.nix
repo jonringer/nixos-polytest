@@ -4,8 +4,7 @@
   inputs = {
     nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
-    #poly-test.url = "github:jonringer/nixos-polytest";
-    poly-test.url = "path:///home/jringer/projects/poly-runtest";
+    poly-test.url = "github:jonringer/nixos-polytest";
   };
 
   outputs = { nixpkgs-2311, nixpkgs-2405, poly-test, self }: let
