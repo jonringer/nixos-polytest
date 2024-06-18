@@ -4,25 +4,26 @@ let
 
   # Reifies and correctly wraps the python test driver for
   # the respective qemu version and with or without ocr support
-  testDriver = hostPkgs.callPackage ../test-driver {
+  testDriver = hostPkgs.callPackage "${hostPkgs.path}/nixos/lib/test-driver" {
     inherit (config) enableOCR extraPythonPackages;
     qemu_pkg = config.qemu.package;
     imagemagick_light = hostPkgs.imagemagick_light.override { inherit (hostPkgs) libtiff; };
     tesseract4 = hostPkgs.tesseract4.override { enableLanguages = [ "eng" ]; };
   };
 
+  testScriptPrepend = "${hostPkgs.path}/nixos/lib/test-script-prepend.py";
 
   vlans = map
     (m: (
-      m.virtualisation.vlans ++
-      (lib.mapAttrsToList (_: v: v.vlan) m.virtualisation.interfaces)
+      m.machine.config.virtualisation.vlans ++
+      (lib.mapAttrsToList (_: v: v.vlan) m.machine.config.virtualisation.interfaces)
     ))
     (lib.attrValues config.nodes);
-  vms = map (m: m.system.build.vm) (lib.attrValues config.nodes);
+  vms = map (m: m.machine.config.system.build.vm) (lib.attrValues config.nodes);
 
   nodeHostNames =
     let
-      nodesList = map (c: c.system.name) (lib.attrValues config.nodes);
+      nodesList = map (c: c.machine.config.system.name) (lib.attrValues config.nodes);
     in
     nodesList ++ lib.optional (lib.length nodesList == 1 && !lib.elem "machine" nodesList) "machine";
 
@@ -63,7 +64,7 @@ let
 
         ${lib.optionalString (!config.skipTypeCheck) ''
           # prepend type hints so the test script can be type checked with mypy
-          cat "${../test-script-prepend.py}" >> testScriptWithTypes
+          cat "${testScriptPrepend}" >> testScriptWithTypes
           echo "${builtins.toString machineNames}" >> testScriptWithTypes
           echo "${builtins.toString vlanNames}" >> testScriptWithTypes
           echo -n "$testScript" >> testScriptWithTypes

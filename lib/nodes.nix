@@ -54,12 +54,10 @@ let
             })
           ({ options, ... }: {
             key = "nodes.nix-pkgs";
-            config = optionalAttrs (!config.node.pkgsReadOnly) (
-              mkIf (!options.nixpkgs.pkgs.isDefined) {
-                # TODO: switch to nixpkgs.hostPlatform and make sure containers-imperative test still evaluates.
-                nixpkgs.system = guestSystem;
-              }
-            );
+            config = mkIf (!options.nixpkgs.pkgs.isDefined) {
+              # TODO: switch to nixpkgs.hostPlatform and make sure containers-imperative test still evaluates.
+              nixpkgs.system = guestSystem;
+            };
           })
         ];
     };
@@ -95,13 +93,13 @@ in
         };
 
         options.specialArgs = mkOption {
-          type = types.attrsOf types.any;
+          type = types.attrsOf types.raw;
           default = testModuleArgs.specialArgs;
           description = "Attrset of values passed to evalModules' specialArgs paramter";
         };
 
         options.modules = mkOption {
-          type = types.listOf types.deferredModules;
+          type = types.listOf types.deferredModule;
           default = [ ];
           description = "Additional modules to be passed to node evaluation";
         };
