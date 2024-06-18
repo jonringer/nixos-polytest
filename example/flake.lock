@@ -32,31 +32,13 @@
         "type": "github"
       }
     },
-    "nixpkgs-lib": {
-      "locked": {
-        "lastModified": 1717894324,
-        "narHash": "sha256-4q6ZO3BqHgdd3Aacb/xiQXB4g9TQKpQg/praTpD9vbI=",
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "rev": "13eac98dc5233fe7e52f0cd0e2cba7dcd77feca5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "type": "github"
-      }
-    },
     "poly-test": {
-      "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib"
-      },
       "locked": {
-        "lastModified": 1718676776,
-        "narHash": "sha256-O/Lx0grl1V2bMlw588OWbTAKEGWjNOhqfR9iNMUoir4=",
+        "lastModified": 1718678136,
+        "narHash": "sha256-oK6+K1OrD0/oI+4h7LkSqeNw10QlrVTYQtdkWi8w2os=",
         "owner": "jonringer",
         "repo": "nixos-polytest",
-        "rev": "00661bd6b2b7f59398b55207585eb961ec42e680",
+        "rev": "3dca4159521bb027529819aaa8a67f4b3dc8cb21",
         "type": "github"
       },
       "original": {
